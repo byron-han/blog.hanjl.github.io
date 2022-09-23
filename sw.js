@@ -33,7 +33,7 @@ const HOSTNAME_WHITELIST = [
   self.location.hostname,
   "blog.hanjl.com",
   "hanjl.com",
-  "byron-han.github.io",
+  "hanjl7.github.io",
   "cdnjs.cloudflare.com"
 ]
 const DEPRECATED_CACHES = ['precache-v1', 'runtime', 'main-precache-v1', 'main-runtime']
