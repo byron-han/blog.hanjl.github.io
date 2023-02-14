@@ -29,6 +29,31 @@ visudo /etc/sudoers
 develop ALL=(ALL)NOPASSWD : ALL
 ```
 
+### 修改远程端口
+使用系统默认端口的风险较大，容易被攻击软件扫描以及攻击
+#### 设置防火墙
+我这边服务器用的是*firewall*
+
+```shell
+sudo firewall-cmd --add-port=新端口号/tcp --permanent
+#firewall-cmd --add-port=<port>/<protocol> #添加端口/协议（TCP/UDP）
+#firewall-cmd --remove-port=<port>/<protocol> #移除端口/协议（TCP/UDP）
+#firewall-cmd --list-ports #查看开放的端口
+
+# 重启防火墙(修改配置后要重启防火墙)
+sudo firewall-cmd --reload
+```
+[Centos7防火墙firewalld概述及常用操作命令总结](https://blog.51cto.com/lovebetterworld/2840001)
+
+#### 添加远程端口
+```shell
+#修改配置文件
+sudo vim /etc/ssh/sshd_config
+# 删除端口注释，改为自己的远程端口
+Port XXX
+sudo systemctl restart sshd.service
+```
+
 ### 设置密钥登录
 SSH 密钥对是通过加密算法生成的一对密钥，为远程登录实例提供一种更安全便捷的认证方式。腾讯云创建的 SSH 密钥对采用 RSA 2048位的加密方式，生成包括公有密钥（公钥）和私有密钥（私钥）：
 
