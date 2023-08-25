@@ -25,6 +25,57 @@ Header value: 8.8.8.8
 
 ![image.png](https://s2.loli.net/2023/03/02/IZMDjtoeJGCc95x.png)
 
+```json
+{
+	"request": [
+		{
+			"enable": false,
+			"name": "必应中文  >> 英文",
+			"ruleType": "redirect",
+			"matchType": "regexp",
+			"pattern": "^https?://cn\\.bing\\.com/(.*)",
+			"exclude": "",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://www.bing.com/$1&setmkt=en-US",
+			"group": "bing"
+		}
+	],
+	"sendHeader": [
+		{
+			"enable": true,
+			"name": "必应 Chat 代理：Edge 浏览器",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": "^http(s?)://(.*)\\.bing\\.com/(.*)",
+			"exclude": "",
+			"isFunction": false,
+			"action": {
+				"name": "sec-ch-ua",
+				"value": "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Microsoft Edge\";v=\"116\""
+			},
+			"group": "bing"
+		},
+		{
+			"enable": true,
+			"name": "必应 Chat 代理：Edge 浏览器_user-agent",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": "^http(s?)://(.*)\\.bing\\.com/(.*)",
+			"exclude": "",
+			"isFunction": false,
+			"action": {
+				"name": "user-agent",
+				"value": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.54"
+			},
+			"group": "bing"
+		}
+	],
+	"receiveHeader": [],
+	"receiveBody": []
+}
+```
+
 #### 2.在Chrome中使用New Bing
 
 >Match type: Regular expression  
